@@ -1,28 +1,4 @@
-let cars = [{
-        name: "718 Cayman",
-        model: "2019",
-        doors: 5,
-        color: "red",
-        brand: "Porsche"
-    },
-    {
-        name: "Accord",
-        model: "2021",
-        doors: 4,
-        color: "black",
-        brand: "Honda"
-    },
-    {
-        name: "Mazda 2",
-        model: "2017",
-        doors: 2,
-        color: "white",
-        brand: "Nissan"
-    }
-]
-
-
-
+let cars = [];
 
 let carsInfoDIV = document.getElementById("list-container-child");
 let userForm = document.getElementById("form-container")
