@@ -22,14 +22,17 @@ let cars = [{
 ]
 
 
+
+
 let carsInfoDIV = document.getElementById("list-container-child");
 let userForm = document.getElementById("form-container")
 
 
-const rederList = () => {
+const renderList = () => {
     carsInfoDIV.innerHTML = "";
+    carsArray = cars;
 
-    cars.forEach((info, index) => {
+    carsArray.forEach((info, index) => {
         let userItemDiv = document.createElement("div");
         userItemDiv.setAttribute("class", "first-child");
         carsInfoDIV.appendChild(userItemDiv);
@@ -40,11 +43,11 @@ const rederList = () => {
         let carsItemColor = document.createElement("p");
         let carsItemBrand = document.createElement("p");
 
-        carsItemName.innerHTML = (`${info.name}`)
-        carsItemModel.innerHTML = (` ${info.model}`)
-        carsItemDoors.innerHTML = (` ${info.doors}`)
-        carsItemColor.innerHTML = (` ${info.color}`)
-        carsItemBrand.innerHTML = (` ${info.brand}`)
+        carsItemName.innerText = `${info.name}`
+        carsItemModel.innerText = `${info.model}`
+        carsItemDoors.innerText = `${info.doors}`
+        carsItemColor.innerText = `${info.color}`
+        carsItemBrand.innerText = `${info.brand}`
 
         userItemDiv.appendChild(carsItemName);
         userItemDiv.appendChild(carsItemModel);
@@ -83,7 +86,9 @@ const createUser = event => {
         color: document.getElementById("color").value,
         brand: document.getElementById("brand").value
     };
+    console.log("funciona?")
     cars.push(info);
+    userForm.reset();
     renderList();
 };
 
@@ -104,5 +109,6 @@ const deleteUser = index => {
 };
 
 userForm.addEventListener("submit", createUser);
-document.addEventListener("DOMcontentLoaded", rederList());
+document.addEventListener("DOMcontentLoaded", renderList());
+
 
