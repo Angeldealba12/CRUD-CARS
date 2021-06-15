@@ -139,8 +139,7 @@ img {
     height: 20rem;
     flex-wrap: wrap;
     width: 90%; 
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: auto;
 }
 
 .list-container-child2 {

@@ -1,5 +1,8 @@
 let cars = [];
 
+let updateFlag = false;
+let updateIndex = null;
+
 let carsInfoDIV = document.getElementById("list-container-child");
 let userForm = document.getElementById("form-container")
 
@@ -55,17 +58,34 @@ const renderList = () => {
 
 const createUser = event => {
     event.preventDefault();
-    let info = {
-        name: document.getElementById("name").value,
-        model: document.getElementById("model").value,
-        doors: document.getElementById("doors").value,
-        color: document.getElementById("color").value,
-        brand: document.getElementById("brand").value
+
+    if (updateFlag) {
+        let updatedUser = {
+            name: document.getElementById("name").value,
+            model: document.getElementById("model").value,
+            doors: document.getElementById("doors").value,
+            color: document.getElementById("color").value,
+            brand: document.getElementById("brand").value
+        };
+
+        cars[updateIndex] = updatedUser;
+
+        updateFlag = false;
+        updateIndex = null;
+
+        renderList();
+    } else {
+        let info = {
+            name: document.getElementById("name").value,
+            model: document.getElementById("model").value,
+            doors: document.getElementById("doors").value,
+            color: document.getElementById("color").value,
+            brand: document.getElementById("brand").value
+        };
+        cars.push(info);
+        userForm.reset();
+        renderList();
     };
-    console.log("funciona?")
-    cars.push(info);
-    userForm.reset();
-    renderList();
 };
 
 const updateUser = (index, info) => {
@@ -76,7 +96,9 @@ const updateUser = (index, info) => {
     document.getElementById("doors").value = info.doors;
     document.getElementById("color").value = info.color;
     document.getElementById("brand").value = info.brand;
-}
+    updateFlag = true;
+    updateIndex = index;
+};
 
 
 const deleteUser = index => {
@@ -86,5 +108,3 @@ const deleteUser = index => {
 
 userForm.addEventListener("submit", createUser);
 document.addEventListener("DOMcontentLoaded", renderList());
-
-
